@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     http.Response request = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/todos"),
     );
+    setState(() {});
   }
 
   @override

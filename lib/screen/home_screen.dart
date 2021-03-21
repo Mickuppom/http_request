@@ -38,8 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("Home Screen"),
       ),
-      body: Container(
-        child: Center(),
+      body: SingleChildScrollView(
+        child: ListView(
+          children: todos
+              .map(
+                (item) => ListTile(
+                  title: Text(item.title),
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }

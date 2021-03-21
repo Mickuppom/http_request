@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
     http.Response request = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/todos"),
     );
-    setState(() {});
+    setState(() {
+      todos = (jsonDecode(request.body) as List)
+          .map((json) => Todo.fromJson(json))
+          .toList();
+    });
   }
 
   @override

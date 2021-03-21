@@ -35,6 +35,40 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              margin: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://cf-s3.petcoach.co/thumbnails/article/uploads/articles/363/bdd17f44166dbff74876fced4dc6c9d3ca06ad80.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://cf-s3.petcoach.co/thumbnails/article/uploads/articles/363/bdd17f44166dbff74876fced4dc6c9d3ca06ad80.jpeg"),
+                    ),
+                    Text("Mickuppom"),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, '/gallery');
+              },
+              leading: Icon(Icons.photo),
+              title: Text("Gallery"),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text("Home Screen"),
       ),
@@ -42,8 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: todos
               .map(
-                (item) => ListTile(
-                  title: Text(item.title),
+                (item) => Card(
+                  child: ListTile(
+                    title: Text(item.title),
+                    subtitle:
+                        item.completed ? Text("Completed") : Text("Incomplete"),
+                  ),
                 ),
               )
               .toList(),

@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("Home Screen"),
       ),
-      body: SingleChildScrollView(
+      body: Container(
         child: ListView(
           children: todos
               .map(
